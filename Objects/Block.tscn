@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgbwqskqproq2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pktxu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vhw83"]
+
+[sub_resource type="Skin" id="Skin_pktxu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhw83"]
+albedo_color = Color(1, 0.133333, 1, 1)
+
+[node name="Block" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2868, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_pktxu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_vhw83")
+skin = SubResource("Skin_pktxu")
+surface_material_override/0 = SubResource("StandardMaterial3D_vhw83")
