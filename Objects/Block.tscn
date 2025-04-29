@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgbwqskqproq2"]
+[gd_scene load_steps=6 format=3 uid="uid://bgbwqskqproq2"]
+
+[ext_resource type="Script" uid="uid://bxearck2hobhm" path="res://Objects/block.gd" id="1_vhw83"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pktxu"]
 
@@ -10,9 +12,11 @@
 albedo_color = Color(1, 0.133333, 1, 1)
 
 [node name="Block" type="Node3D"]
+metadata/position = Vector3(0, 0, 0)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2868, 0)
+script = ExtResource("1_vhw83")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_pktxu")

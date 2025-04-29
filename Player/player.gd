@@ -1,43 +1,69 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const LOOKAROUND_SPEED = 0.002
+const MOVEMENT_SPEED_GROUND = 0.6
+const MOVEMENT_SPEED_AIR = 0.11
+const MOVEMENT_FRICTION_GROUND = 0.9
+const MOVEMENT_FRICTION_AIR = 0.98
 var rot_x = 0
 var rot_y = 0
+var _mouse_motion = Vector2()
+var target_velocity = Vector3.ZERO
 @onready var pov = $POV
+@onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var raycast = $POV/Raycast
+var colliding = false
+var looking_at
 
-#func _init():
-	#Input.MouseMode = "Captured"
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	# Keyboard movement.
+	var movement_vec2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var movement = transform.basis * (Vector3(movement_vec2.x, 0, movement_vec2.y))
+
+	if is_on_floor():
+		movement *= MOVEMENT_SPEED_GROUND
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		movement *= MOVEMENT_SPEED_AIR
+
+	# Gravity.
+	velocity.y -= gravity * delta
+
+	velocity += Vector3(movement.x, 0, movement.z)
+	# Apply horizontal friction.
+	velocity.x *= MOVEMENT_FRICTION_GROUND if is_on_floor() else MOVEMENT_FRICTION_AIR
+	velocity.z *= MOVEMENT_FRICTION_GROUND if is_on_floor() else MOVEMENT_FRICTION_AIR
+	move_and_slide()
+
+func _process(delta):	
+	# Mouse movement.
+	_mouse_motion.y = clamp(_mouse_motion.y, -1560, 1560)
+	transform.basis = Basis.from_euler(Vector3(0, _mouse_motion.x * -0.001, 0))
+	pov.transform.basis = Basis.from_euler(Vector3(_mouse_motion.y * -0.001, 0, 0))
+	
+	if raycast.is_colliding():
+		colliding = true
+	else:
+		colliding = false
+	
+	if Input.is_action_just_pressed("shoot") and colliding:		
+		var ray_position = raycast.get_collision_point()
+		var thing = raycast.get_collider()
+		thing.applyRule("BIG")
 
 func _input(event):
-	if event is InputEventMouseMotion and event.button_mask & 1:
-		# modify accumulated mouse rotation
-		rot_x -= event.relative.x * LOOKAROUND_SPEED
-		rot_y -= event.relative.y * LOOKAROUND_SPEED
-		pov.transform.basis = Basis()
-		pov.rotate_object_local(Vector3(0, 1, 0), rot_x) # first rotate in Y
-		pov.rotate_object_local(Vector3(1, 0, 0), rot_y) # then rotate in X
+#	when holding q => open menu selection for rules
+#   up == BIG, left == GRAVITY, right == REVERSE, down == LIQUID
+	if event is InputEventMouseMotion:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			_mouse_motion += event.relative
 	
 
 	move_and_slide()

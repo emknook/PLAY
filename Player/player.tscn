@@ -22,3 +22,7 @@ mesh = SubResource("CapsuleMesh_hvfyp")
 
 [node name="POV" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57458, 0)
+
+[node name="Raycast" type="RayCast3D" parent="POV"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+target_position = Vector3(0, 0, -4)
