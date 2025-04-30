@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxc4d0d0e5ogd"]
+
+[ext_resource type="PackedScene" uid="uid://dfho7rv4qbsed" path="res://Assets/gltf/blue/platform_6x6x1_blue.gltf" id="1_its0h"]
+[ext_resource type="Script" uid="uid://buox5il72yhaj" path="res://Objects/scripts/6x_6floor.gd" id="1_nidht"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nidht"]
+size = Vector3(6, 1, 6)
+
+[node name="Floor" type="Node3D"]
+script = ExtResource("1_nidht")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_nidht")
+
+[node name="platform_6x6x1_blue2" parent="StaticBody3D" instance=ExtResource("1_its0h")]

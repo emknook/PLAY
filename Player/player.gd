@@ -56,7 +56,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("shoot") and colliding:		
 		var ray_position = raycast.get_collision_point()
 		var thing = raycast.get_collider()
-		thing.applyRule("BIG")
+		if thing is Block:
+			thing.applyRule("BIG")
 
 func _input(event):
 #	when holding q => open menu selection for rules
