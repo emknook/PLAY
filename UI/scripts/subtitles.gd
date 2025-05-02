@@ -38,8 +38,6 @@ func queue_text(text):
 	
 func intro():
 	queue_text("Hi there! You must be wondering what you're doing here.")
-	queue_text("You are free to do what you want here :)")
-	queue_text("You are free to do what you want here :)2123123")
-	queue_text("You are free to12312313 t here :)")
-	queue_text("You are 123123123re :)")
+	queue_text("You are free to do what you want here")
+	
 	
