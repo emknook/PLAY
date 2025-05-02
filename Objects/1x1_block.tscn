@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba52rewrt5btr"]
+
+[ext_resource type="PackedScene" uid="uid://bt8kaet3w7nm8" path="res://Assets/gltf/red/platform_1x1x1_red.gltf" id="1_25bpt"]
+
+[node name="platform_1x1x1_red2" instance=ExtResource("1_25bpt")]
+
+[node name="platform_1x1x1_red" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

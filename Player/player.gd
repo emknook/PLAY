@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Player
+
 const JUMP_VELOCITY = 4.5
 const LOOKAROUND_SPEED = 0.002
 const MOVEMENT_SPEED_GROUND = 0.6
@@ -17,7 +19,7 @@ var colliding = false
 var looking_at
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
 
 func _physics_process(delta):
 	# Handle jump.

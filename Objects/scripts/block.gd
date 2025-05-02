@@ -8,6 +8,7 @@ class_name Block
 var is_animating = false
 @onready var collision = $Collision
 @onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var platform_1x_1x_1_red_2 = $platform_1x1x1_red2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,7 +27,8 @@ func applyRule(rule):
 			var new_scale = current_scale * scale_factor
 			bigTween.set_parallel(true)
 			bigTween.tween_property(collision.shape, "size", Vector3(new_scale,new_scale,new_scale), 1)
-			bigTween.tween_property(mesh_instance_3d, "scale", Vector3(new_scale,new_scale,new_scale), 1)
+			#bigTween.tween_property(mesh_instance_3d, "scale", Vector3(new_scale,new_scale,new_scale), 1)
+			bigTween.tween_property(platform_1x_1x_1_red_2, "scale", Vector3(new_scale,new_scale,new_scale), 1)
 			current_scale = new_scale
 			#bigTween.tween_callback(block.queue_free)
 		

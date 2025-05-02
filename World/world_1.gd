@@ -1,10 +1,14 @@
 extends Node3D
-@onready var floorTile = $Floor
+#@onready var floorTile = $Floor
+@onready var timer = Timer.new()
 
-const RANGE = 10
+#const RANGE = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	add_child(timer)
+	timer.one_shot = true
+	#timer.connect("timeout")
 	#create_floor_grid()
 
 #func create_floor_grid():
@@ -24,4 +28,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("Escape"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	pass
+
+func _input(event):	
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	

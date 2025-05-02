@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgbwqskqproq2"]
+[gd_scene load_steps=7 format=3 uid="uid://bgbwqskqproq2"]
 
 [ext_resource type="Script" uid="uid://bxearck2hobhm" path="res://Objects/scripts/block.gd" id="1_vhw83"]
+[ext_resource type="PackedScene" uid="uid://ba52rewrt5btr" path="res://Objects/1x1_block.tscn" id="2_ld4qb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pktxu"]
 
@@ -23,6 +24,9 @@ script = ExtResource("1_vhw83")
 shape = SubResource("BoxShape3D_pktxu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Block"]
+visible = false
 mesh = SubResource("BoxMesh_vhw83")
 skin = SubResource("Skin_pktxu")
 surface_material_override/0 = SubResource("StandardMaterial3D_vhw83")
+
+[node name="platform_1x1x1_red2" parent="Block" instance=ExtResource("2_ld4qb")]
