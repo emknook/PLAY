@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4airbe6h1fs1"]
+
+[ext_resource type="PackedScene" uid="uid://b3alpvmec4yow" path="res://Assets/gltf/neutral/barrier_1x1x1.gltf" id="1_o2a63"]
+
+[node name="Light" type="Node3D"]
+
+[node name="barrier_1x1x12" parent="." instance=ExtResource("1_o2a63")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.137761, 0)
+light_color = Color(1, 1, 0.478431, 1)
+light_energy = 0.726
+omni_range = 10.0

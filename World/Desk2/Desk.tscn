@@ -1,0 +1,235 @@
+[gd_scene load_steps=33 format=3 uid="uid://c6p2e7r3kvx7a"]
+
+[ext_resource type="Script" uid="uid://dpv4se4pa1nxg" path="res://World/Desk/desk.gd" id="1_mujap"]
+[ext_resource type="ArrayMesh" uid="uid://1neknioyy0t0" path="res://Assets/ModernOfficePack/Desk/Desk.obj" id="2_vufgd"]
+[ext_resource type="Texture2D" uid="uid://molepfbbdduk" path="res://Assets/ModernOfficePack/Desk/Desk_Base_Color.png" id="3_x0la3"]
+[ext_resource type="ArrayMesh" uid="uid://cjwg3lgikjcu4" path="res://Assets/ModernOfficePack/ComputerMonitor16-9/ComputerMonitor16-9.obj" id="4_qjxvt"]
+[ext_resource type="Texture2D" uid="uid://6umxcjjhlq2t" path="res://Assets/ModernOfficePack/ComputerMonitor16-9/DefaultMaterial_Base_Color.png" id="5_pklpq"]
+[ext_resource type="ArrayMesh" uid="uid://ladw7bxwemvs" path="res://Assets/ModernOfficePack/ComputerCaseTower/ComputerCaseTower.obj" id="6_o8eob"]
+[ext_resource type="Texture2D" uid="uid://dk4i1ly7vhima" path="res://Assets/ModernOfficePack/ComputerCaseTower/ComputerCaseTower_Base_Color.png" id="7_j8ech"]
+[ext_resource type="ArrayMesh" uid="uid://dg043goxpsh01" path="res://Assets/ModernOfficePack/ComputerKeyboard/ComputerKeyboard.obj" id="8_om5ov"]
+[ext_resource type="Texture2D" uid="uid://speqon0ywbm" path="res://Assets/ModernOfficePack/ComputerKeyboard/ComputerKeyboard_Base_Color.png" id="9_jeljg"]
+[ext_resource type="ArrayMesh" uid="uid://csfa1uwyrjf5r" path="res://Assets/ModernOfficePack/ClockDesk/ClockDesk.obj" id="10_qta7y"]
+[ext_resource type="Texture2D" uid="uid://bkgakdsv2low8" path="res://Assets/ModernOfficePack/ClockDesk/ClockDesk_Base_Color.png" id="11_iiy8r"]
+[ext_resource type="ArrayMesh" uid="uid://5nix3mhn0nex" path="res://Assets/ModernOfficePack/Binder/Binder.obj" id="12_2pyo7"]
+[ext_resource type="Texture2D" uid="uid://d370goldh7xey" path="res://Assets/ModernOfficePack/Binder/Binder_Base_Color.png" id="13_ohpj1"]
+[ext_resource type="ArrayMesh" uid="uid://o4fgmwquk14t" path="res://Assets/ModernOfficePack/ComputerMouse&Pad/ComputerMousePad.obj" id="14_elxdr"]
+[ext_resource type="Texture2D" uid="uid://boc0k0ub0fchg" path="res://Assets/ModernOfficePack/ComputerMouse&Pad/ComputerMouse_Base_Color.png" id="15_2k2a7"]
+[ext_resource type="ArrayMesh" uid="uid://m03cmiexeyq7" path="res://Assets/ModernOfficePack/ComputerMouse&Pad/ComputerMouse.obj" id="16_pd5rn"]
+[ext_resource type="PackedScene" uid="uid://ctog2svp1x4bj" path="res://UI/Subtitles.tscn" id="17_c14t0"]
+[ext_resource type="Texture2D" uid="uid://bofwbm4lkclpm" path="res://Player/file.png" id="18_dksv8"]
+[ext_resource type="Texture2D" uid="uid://2i5vklqmlkd0" path="res://icon.svg" id="19_uflg4"]
+[ext_resource type="PackedScene" uid="uid://bt8kaet3w7nm8" path="res://Assets/gltf/red/platform_1x1x1_red.gltf" id="20_vufgd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6oygm"]
+albedo_texture = ExtResource("3_x0la3")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eonr5"]
+size = Vector2(80, 80)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r2ylv"]
+size = Vector2(4, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t5owa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eb337"]
+albedo_texture = ExtResource("5_pklpq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4207"]
+albedo_texture = ExtResource("7_j8ech")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y41fb"]
+albedo_texture = ExtResource("9_jeljg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnayw"]
+albedo_texture = ExtResource("11_iiy8r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07gi7"]
+albedo_texture = ExtResource("13_ohpj1")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_vnayw"]
+albedo_texture = ExtResource("15_2k2a7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwfup"]
+albedo_texture = ExtResource("15_2k2a7")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3myfq"]
+
+[node name="Desk" type="Node3D"]
+script = ExtResource("1_mujap")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 1.199, 0.924)
+fov = 70.0
+near = 0.005
+
+[node name="Desk" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_vufgd")
+surface_material_override/0 = SubResource("StandardMaterial3D_6oygm")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_eonr5")
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.364807, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.338318, -0.418402)
+mesh = SubResource("PlaneMesh_r2ylv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1.03676, 0.333257, 0)
+mesh = SubResource("PlaneMesh_t5owa")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.01105, 0.347867, 0)
+mesh = SubResource("PlaneMesh_t5owa")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04248, 2.10584, 0.678055)
+light_energy = 0.4
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.765491, 2.10584, 0.547572)
+light_energy = 0.4
+
+[node name="ComputerMonitor16-9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755, -0.190711)
+mesh = ExtResource("4_qjxvt")
+surface_material_override/0 = SubResource("StandardMaterial3D_eb337")
+
+[node name="ComputerCaseTower" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.993011, 0, -0.118023, 0, 1, 0, 0.118023, 0, 0.993011, 0.701569, 0.765946, -0.130664)
+mesh = ExtResource("6_o8eob")
+surface_material_override/0 = SubResource("StandardMaterial3D_x4207")
+
+[node name="ComputerKeyboard" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.99513, 0, 0.0985729, 0, 1, 0, -0.0985729, 0, 0.99513, -0.161863, 0.796847, 0.209333)
+mesh = ExtResource("8_om5ov")
+surface_material_override/0 = SubResource("StandardMaterial3D_y41fb")
+
+[node name="ClockDesk" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.790102, 0, 0.612976, 0, 1, 0, -0.612976, 0, 0.790102, -0.825944, 0.766628, -0.256417)
+mesh = ExtResource("10_qta7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_vnayw")
+
+[node name="Binder" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.35673e-08, -0.996704, -0.081121, -1, -4.37114e-08, -7.32709e-22, -3.54591e-09, 0.081121, -0.996704, -0.928021, 0.923008, -0.230089)
+mesh = ExtResource("12_2pyo7")
+surface_material_override/0 = SubResource("StandardMaterial3D_07gi7")
+
+[node name="ComputerMousePad" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.986569, 0, -0.163343, 0, 1, 0, 0.163343, 0, 0.986569, 0.325282, 0.800447, 0.216629)
+mesh = ExtResource("14_elxdr")
+surface_material_override/0 = SubResource("ORMMaterial3D_vnayw")
+
+[node name="ComputerMouse" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.972248, 0, 0.233954, 0, 1, 0, -0.233954, 0, 0.972248, 0.283796, 0.806844, 0.229347)
+mesh = ExtResource("16_pd5rn")
+surface_material_override/0 = SubResource("StandardMaterial3D_wwfup")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Subtitles" parent="CanvasLayer" instance=ExtResource("17_c14t0")]
+
+[node name="Screen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="DON\'T OPEN" type="Button" parent="CanvasLayer/Screen"]
+layout_mode = 0
+offset_left = 1502.0
+offset_top = 254.0
+offset_right = 1608.0
+offset_bottom = 354.0
+text = "WELL DONE!"
+icon = ExtResource("18_dksv8")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Game" type="Button" parent="CanvasLayer/Screen"]
+layout_mode = 0
+offset_left = 1346.0
+offset_top = 573.0
+offset_right = 1452.0
+offset_bottom = 673.0
+text = "PLAY
+"
+icon = ExtResource("19_uflg4")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="File1" type="Button" parent="CanvasLayer/Screen"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 106.0
+offset_right = 208.0
+offset_bottom = 206.0
+text = "File1"
+icon = ExtResource("18_dksv8")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="File2" type="Button" parent="CanvasLayer/Screen"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 257.0
+offset_right = 212.0
+offset_bottom = 357.0
+text = "File2"
+icon = ExtResource("18_dksv8")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Text_file" type="Control" parent="CanvasLayer/Screen"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Screen/Text_file"]
+layout_mode = 0
+offset_left = 636.0
+offset_top = 112.0
+offset_right = 1261.0
+offset_bottom = 787.0
+texture = SubResource("CanvasTexture_3myfq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Screen/Text_file"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 148.0
+offset_right = 1232.0
+offset_bottom = 755.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[color=black]
+Well done!
+We've gotten a tiny bit closer to Learning what play is.
+It's truly something, you know. Changing the size of a box. Who knew you could do such a thing.
+[/color]"
+
+[node name="platform_1x1x1_red2" parent="CanvasLayer/Screen/Text_file" instance=ExtResource("20_vufgd")]
+transform = Transform3D(0.0774315, 0, 0.06328, 0, 0.1, 0, -0.06328, 0, 0.0774315, -0.355161, 0.766841, -0.233577)
+
+[node name="Black" type="ColorRect" parent="CanvasLayer/Screen"]
+visible = false
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="CanvasLayer/Screen/DON\'T OPEN" to="." method="open_dont"]
+[connection signal="pressed" from="CanvasLayer/Screen/Game" to="." method="open_game"]
+[connection signal="pressed" from="CanvasLayer/Screen/File1" to="." method="open_file"]
+[connection signal="pressed" from="CanvasLayer/Screen/File2" to="." method="open_file"]
